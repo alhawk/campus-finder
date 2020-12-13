@@ -1,6 +1,29 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {useDispatch, useSelector} from "react-redux"
+import {setUsers} from "../store/actions/index"
+import {Link, useHistory} from "react-router-dom"
 
 function Register() {
+    const [input, setInput] = useState({
+        email : "",
+        password : ""
+    })
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const handleInput = (e) => {
+        const {name, value} = e.target
+        setInput({
+            ...input,
+            [name]: value
+        })
+    }
+
+    const register = (e) => {
+        e.preventDefault()
+        dispatch(setUsers(input))
+        history.push("/login")
+    }
+
     return (
         <div class="flex items-center min-h-screen p-4 bg-gray-100 lg:justify-center">
             <div
@@ -17,7 +40,7 @@ function Register() {
                     </p>
                     <p class="flex flex-col items-center justify-center mt-10 text-center">
                         <span>Already have an account?</span>
-                        <a href="/login" class="underline">Login here!</a>
+                        <Link to="/login" class="underline">Login here!</Link>
                     </p>
                     <p class="mt-6 text-sm text-center text-gray-300">
                         Read our <a href="#" class="underline">terms</a> and <a href="#" class="underline">conditions</a>
@@ -29,7 +52,9 @@ function Register() {
                         <div class="flex flex-col space-y-1">
                             <label for="email" class="text-sm font-semibold text-gray-500">Email address</label>
                             <input
+                                onChange={(e) => {handleInput(e)}}
                                 type="email"
+                                name="email"
                                 id="email"
                                 autofocus
                                 class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
@@ -41,7 +66,9 @@ function Register() {
                                 <a href="#" class="text-sm text-blue-600 hover:underline focus:text-blue-800">Forgot Password?</a>
                             </div>
                             <input
+                                onChange={(e) => {handleInput(e)}}
                                 type="password"
+                                name="password"
                                 id="password"
                                 class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                             />
@@ -56,6 +83,7 @@ function Register() {
                         </div>
                         <div>
                             <button
+                                onClick={(e) => register(e)}
                                 type="submit"
                                 class="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-red-400 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
                             >

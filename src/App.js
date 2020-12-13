@@ -9,6 +9,8 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Favorites from "./pages/Favorites"
 import Home from "./pages/Home"
+import Newsletter from "./pages/Newsletter"
+
 
 function App() {
   return (
@@ -24,6 +26,9 @@ function App() {
           </Route>
           <Route path="/favorites">
             <Favorites />
+          </Route>
+          <Route path="/newsletter">
+            <Newsletter />
           </Route>
           <Route path="/">
             <Home />

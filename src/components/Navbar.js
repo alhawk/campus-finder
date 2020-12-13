@@ -1,14 +1,23 @@
 import React from 'react'
+import {useHistory,Link} from "react-router-dom"
 
 function Navbar() {
+    const history = useHistory()
     return (
-        <div>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/favorites">Favorites</a></li>
-            </ul>
+        <div class="container mx-auto p-5">
+            <nav class="flex justify-between">
+                <div>
+                    <a href="/">Logo</a>
+                </div>
+                <ul class="flex flex-row">
+                    <li class="pr-5"><Link to="/">Home</Link></li>
+                    <li class="pr-5"><Link to="/login">Login</Link></li>
+                    <li class="pr-5"><Link to="/register">Register</Link></li>
+                    <li class="pr-5"><Link to="/favorites">Favorites</Link></li>
+                    <li class="pr-5"><Link to="/newsletter">Newsletter</Link></li>
+
+                </ul>
+            </nav>
         </div>
     )
 }
